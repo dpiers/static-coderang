@@ -1,0 +1,99 @@
+<head>
+  <meta charset="utf-8" />
+  <!-- Include Firebase -->
+  <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+
+  <!-- Include CodeMirror -->
+  <script src="codemirror/lib/codemirror.js"></script>
+  <link rel="stylesheet" href="codemirror/lib/codemirror.css" />
+
+  <!-- Include CodeMirror Language Modes -->
+  <script src="codemirror/mode/javascript/javascript.js"></script>
+  <script src="codemirror/mode/ruby/ruby.js"></script>
+  <script src="codemirror/mode/python/python.js"></script>
+
+  <!-- Include Firepad -->
+  <script src="firepad/firepad.js"></script>
+  <link rel="stylesheet" href="firepad/firepad.css" />
+
+  <!-- Include example userlist. -->
+  <script src="firepad/firepad-userlist.js"></script>
+  <link rel="stylesheet" href="firepad/firepad-userlist.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="title">
+    coderang
+  </div>
+  <div class="main">
+    <div class="firePower">
+        <div id="userlist"></div>
+        <div id="firepad"></div>
+    </div>
+    <div class="console">
+      Add a Jquery console here. 
+    </div>
+  </div>
+
+  <script>
+    //// Initialize Firebase.
+
+    var randomDocName = function(length) {
+      var chars, x;
+      if (length == null) {
+        length = 10;
+      }
+      chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-=";
+      var name = [];
+      for (x = 0; x < length; x++) {
+        name.push(chars[Math.floor(Math.random() * chars.length)]);
+      }
+      return name.join('');
+    };
+
+    if (!document.location.hash) {
+      document.location.hash = '#' + randomDocName();
+    }
+    var docName = document.location.hash.slice(1);
+
+    var firebaseRef = new Firebase('https://coderang.firebaseio.com/' + docName);
+
+    //// Create CodeMirror (with lineWrapping on).
+    var codeMirror = CodeMirror(document.getElementById('firepad'), { 
+      lineWrapping: true,
+      lineNumbers: true,
+      mode: 'python'
+    });
+
+    // Create a random ID to use as our user ID (we must give this to firepad and FirepadUserList).
+    var userId = Math.floor(Math.random() * 9999999999).toString();
+
+    //// Create Firepad (with rich text features and our desired userId).
+    var firepad = Firepad.fromCodeMirror(firebaseRef, codeMirror,
+      {userId: userId});
+
+    //// Create FirepadUserList (with our desired userId).
+    var firepadUserList = FirepadUserList.fromDiv(firebaseRef.child('users'),
+        document.getElementById('userlist'), userId);
+
+    //// Initialize contents.
+    firepad.on('ready', function() {
+      if (firepad.isHistoryEmpty()) {
+        firepad.setText('# Python editor!\n\nclass Person:\ndef __init__(self, name):\nself.name = name\n\ndef say_hello(name):\nprint "Hello %s!" % name\n\nm = Person("World")\n\nsay_hello(m.name)');
+      }
+    });
+
+  </script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-40647192-1', 'coderang.com');
+    ga('send', 'pageview');
+  </script>
+</body>
