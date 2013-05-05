@@ -123,6 +123,14 @@
       else {
         jqconsole.commandResult();
       }
+
+      var prevPrompt = $('.jquery-console-prompt-box:nth-last-child(2)');
+      if ( prevPrompt ) {
+        if ( ! $('.jquery-console-prompt-box:nth-last-child(2) .jquery-console-prompt').text()) {
+          prevPrompt.remove();
+        }
+      }
+      
       return;
     }
 
@@ -224,7 +232,6 @@
             }
       });
 
-
       var ctlDiv = $('<div class="controls"></div>');
       var select = $('<div id="select">Change Language</div>');
       var run = $('<div id="run">Run...</div>');
@@ -233,6 +240,12 @@
       ctlDiv.append(run);
 
       $('.firepad').append(ctlDiv);
+
+      $('#run').click(function(e) {
+        var input = firepad.codeMirror_.doc.getValue();
+        jsrepl.eval(input);
+      });
+
     });
 
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
