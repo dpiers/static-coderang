@@ -22,19 +22,39 @@ body { margin: 0; height: 100%; }
   color: #404040;
 }
 
+.left {
+	width: 75%;
+	height: 100%;
+	float: left;
+}
+
+.right {
+	width: 25%;
+	height: 100%;
+	display: inline-block;
+	background: #ebebeb; /* Old browsers */
+	background: -moz-linear-gradient(left, #ebebeb 0%, #eaeaea 93%, #d9d9d9 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ebebeb), color-stop(93%,#eaeaea), color-stop(100%,#d9d9d9)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, #ebebeb 0%,#eaeaea 93%,#d9d9d9 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, #ebebeb 0%,#eaeaea 93%,#d9d9d9 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left, #ebebeb 0%,#eaeaea 93%,#d9d9d9 100%); /* IE10+ */
+	background: linear-gradient(to right, #ebebeb 0%,#eaeaea 93%,#d9d9d9 100%); /* W3C */
+	color: #404040;
+}
+
+#videoChat {
+	padding: 10px 30px;
+}
+
 #chat {
+	position: relative;
 	padding-left: 10px;
-	bottom: 0px;
-	position: absolute;
-	top: 64px;
-	width: 95%;
+	position: relative;
 }
 
 #chat .messages {
-	position: absolute;
-	top: 0;
-	bottom: 32px;
 	width: 100%;
+	height:220px;
 	overflow: auto;
 	font-family: Helvetica;
 	font-size: 14px;
@@ -45,13 +65,13 @@ body { margin: 0; height: 100%; }
 }
 
 #chat .reply {
-	width: 100%;
+	width: 270px;
 	position: absolute;
-	bottom: 4px;
+	margin-top: 5px;
 }
 
 #chat .reply input{
-	width: 90%;
+	width: 100%;
 	height: 26px;
 	font-size: 14px;
 	padding: 2px;
@@ -70,7 +90,7 @@ body { margin: 0; height: 100%; }
 
 .controls #select {
 	position: relative;
-	margin-right: 5px;
+	margin-right: 4px;
 	padding: 8px 30px;
 	float: left;
 	background-color: rgb(18, 171, 243);
@@ -80,7 +100,7 @@ body { margin: 0; height: 100%; }
 
 .controls #run {
 	position: relative;
-	margin-right: 5px;
+	margin-right: 4px;
 	padding: 8px 40px;
 	float: right;
 	background-color: rgb(18, 171, 243);
@@ -95,17 +115,18 @@ body { margin: 0; height: 100%; }
 .firepad-userlist {
 }
 
+#firepad {
+	height: 63%;
+	width: 100%;
+}
+
 .firepad {
   position: relative; 
   float: left;
   height: 100%;
-  width: 70%;
+  width: 100%;
 }
 
-.firePower {
-	position: relative;
-	height: 70%;
-}
 
 .main {
 	position: relative;
@@ -145,8 +166,8 @@ body { margin: 0; height: 100%; }
 
 .console {
 	position: relative;
-	height:200px;
-	width: 100%;
+	height:37%;
+	width: 70%;
 }
 
 div.console {
@@ -154,17 +175,16 @@ div.console {
 }
       /* First console */
 div.console {
+    width: 100%;
     font-size: 14px;
     color: #fff;
     font-family: monospace;
-    background: #333;
 }
 
 div.console div.jquery-console-inner {
     width: 100%;
     height: 100%;
     background: #333;
-    padding: 0.5em;
     overflow: auto;
 }
 
@@ -263,4 +283,10 @@ div.console span.jquery-console-prompt-label {
 
 #simplemodal-container h3 {
     color: #84b8d9;
+}
+
+img.powered-by {
+	position: relative;
+	margin-top: 50px;
+	margin-left: 64px;
 }

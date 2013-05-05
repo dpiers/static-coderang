@@ -20,18 +20,14 @@
 }
 
 .firepad-userlist-heading {
-  margin: 0px 10px 0px 10px;
+  margin: 5px 10px 0px 0px;
   font-size: 12px;
   font-weight: bold;
   border-bottom: 2px solid #c9c9c9;
 }
 
 .firepad-userlist-users {
-  position: absolute;
-  left: 10px;
-  right: 15px;
-  top: 20px;
-  bottom: 10px;
+  position: relative;
   overflow-y: auto;
   overflow-x: hidden;
 }
