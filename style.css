@@ -7,29 +7,27 @@ body { margin: 0; height: 100%; }
 	src: url('BRI293.ttf');
 }
 
-.firepad-userlist {
+#userlist {
   position: relative; 
   float: right; 
   height: 100%;  
-  width: 20%;
+  width: 30%;
+}
+
+.firepad-userlist {
+	height: 100%;
 }
 
 .firepad {
   position: relative; 
   float: left;
   height: 100%;
-  width: 80%;
+  width: 70%;
 }
 
 .firePower {
 	position: relative;
 	height: 70%;
-}
-
-.console {
-	position: relative;
-	height:30%;
-	width: 100%;
 }
 
 .main {
@@ -48,4 +46,69 @@ body { margin: 0; height: 100%; }
 	font-weight:normal;
 	font-size: 28px;
 	padding: 1px 5px 4px;
+}
+
+.ui-resizable-handle {
+  width: 100%;
+  height: 8px;
+  padding: 0 1px;
+  cursor: row-resize;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url(img/handle-h.png) 50% 1px no-repeat;
+}
+
+.console {
+	position: relative;
+	height:100%;
+	width: 100%;
+}
+
+div.console {
+    word-wrap: break-word;
+}
+      /* First console */
+div.console {
+    font-size: 14px;
+    color: #fff;
+    font-family: monospace;
+    background: #333;
+}
+
+div.console div.jquery-console-inner {
+    width: 100%;
+    height: 100%;
+    background: #333;
+    padding: 0.5em;
+    overflow: auto;
+}
+
+div.console div.jquery-console-focus span.jquery-console-cursor {
+    background: #fefefe;
+    color: #333;
+    font-weight: bold;
+}
+
+div.console div.jquery-console-message-error {
+    color: #ef0505;
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 0.1em;
+}
+
+div.console div.jquery-console-message-value {
+    color: #1ad027;
+    font-family: monospace;
+    padding: 0.1em;
+}
+
+div.console div.jquery-console-message-type {
+    color: #52666f;
+    font-family: monospace;
+    padding: 0.1em;
+}
+
+div.console span.jquery-console-prompt-label {
+    font-weight: bold;
 }
