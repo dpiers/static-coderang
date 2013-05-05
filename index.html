@@ -130,7 +130,7 @@
           prevPrompt.remove();
         }
       }
-      
+
       return;
     }
 
@@ -242,6 +242,7 @@
       $('.firepad').append(ctlDiv);
 
       $('#run').click(function(e) {
+        jqconsole.reset();
         var input = firepad.codeMirror_.doc.getValue();
         jsrepl.eval(input);
       });

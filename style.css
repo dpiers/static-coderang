@@ -159,12 +159,12 @@ div.console div.jquery-console-focus span.jquery-console-cursor {
     font-weight: bold;
 }
 
-div.jquery-console-message.answer {
+div.jquery-console-message.error {
 	color: #f1c40f;
 }
 
-div.jquery-console-message.empty {
-	color: #e74c3c;
+div.jquery-console-message.answer {
+	color: #2ecc71;
 }
 
 div.console div.jquery-console-message-error {
