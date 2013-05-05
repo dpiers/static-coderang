@@ -15,6 +15,8 @@
   <script src="codemirror/mode/javascript/javascript.js"></script>
   <script src="codemirror/mode/ruby/ruby.js"></script>
   <script src="codemirror/mode/python/python.js"></script>
+  <script src="codemirror/mode/lua/lua.js"></script>
+  <script src="codemirror/mode/scheme/scheme.js"></script>
 
   <!-- Include Firepad -->
   <script src="firepad/firepad.js"></script>
@@ -257,6 +259,39 @@
         jqconsole.reset();
         var input = firepad.codeMirror_.doc.getValue();
         jsrepl.eval(input);
+      });
+
+      $('#python').click(function(e) {
+        jsrepl.loadLanguage("python");
+        firepad.codeMirror_.setOption("mode","python");
+        
+        firepad.setText('# Ruby editor!\n\nclass Person:\n    def __init__(self, name):\n        self.name = name\n\ndef say_hello(name):\n    print "Hello %s!" % name\n\nm = Person("Adrian")\n\nsay_hello(m.name)');
+
+        $.modal.close();
+      });
+
+      $('#ruby').click(function(e) {
+        jsrepl.loadLanguage("ruby");
+        firepad.codeMirror_.setOption("mode","ruby");
+        
+        firepad.setText('# Ruby editor!\n\nclass Person\n    attr_accessor :name\n\n    def initialize(name)\n        self.name = name\n    end\nend\n\ndef say_hello(name)\n    "Hello %s!" % name\nend\n\nm = Person.new("Charles")\n\nsay_hello(m.name)');
+
+        $.modal.close();
+      });
+
+      $('#lua').click(function(e) {
+        jsrepl.loadLanguage("lua");
+        firepad.codeMirror_.setOption("mode","lua");
+        firepad.setText("-- Lua editor!\n\nVector = {}\n\nfunction Vector:new(x, y, z)\n  local object = { x = x, y = y, z = z }\n  setmetatable(object, { __index = Vector })\n  return object\nend\n\nfunction Vector:magnitude()\n  return math.sqrt(self.x^2 + self.y^2 + self.z^2)\nend\n\nvec = Vector:new(0, 1, 0)\n\nprint(vec:magnitude())\nprint(vec.x)");
+
+        $.modal.close();
+      });
+
+      $('#scheme').click(function(e) {
+        jsrepl.loadLanguage("scheme");
+        firepad.codeMirror_.setOption("mode","scheme");
+        // set scheme code
+        $.modal.close();
       });
 
     });
