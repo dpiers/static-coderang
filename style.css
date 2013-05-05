@@ -7,15 +7,80 @@ body { margin: 0; height: 100%; }
 	src: url('BRI293.ttf');
 }
 
-#userlist {
+.sidebar {
   position: relative; 
   float: right; 
   height: 100%;  
   width: 30%;
+  background: #ebebeb; /* Old browsers */
+  background: -moz-linear-gradient(left, #ebebeb 0%, #eaeaea 93%, #d9d9d9 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ebebeb), color-stop(93%,#eaeaea), color-stop(100%,#d9d9d9)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, #ebebeb 0%,#eaeaea 93%,#d9d9d9 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, #ebebeb 0%,#eaeaea 93%,#d9d9d9 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, #ebebeb 0%,#eaeaea 93%,#d9d9d9 100%); /* IE10+ */
+  background: linear-gradient(to right, #ebebeb 0%,#eaeaea 93%,#d9d9d9 100%); /* W3C */
+  color: #404040;
+}
+
+#chat {
+	padding-left: 10px;
+}
+
+#chat .messages {
+	height: 100%;
+	top: 0;
+	bottom: 30px;
+	width: 100%;
+}
+
+#chat .reply {
+	width: 100%;
+	position: absolute;
+	bottom: 4px;
+}
+
+#chat .reply input{
+	width: 90%;
+	height: 26px;
+	font-size: 14px;
+	padding: 2px;
+}
+
+.controls {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	color: white;
+	font-family: bri;
+	font-size: 22px;
+	z-index: 2;
+}
+
+.controls #select {
+	position: relative;
+	margin-right: 5px;
+	padding: 8px 40px;
+	float: left;
+	background-color: rgb(18, 171, 243);
+	cursor: pointer;
+}
+
+
+.controls #run {
+	position: relative;
+	margin-right: 5px;
+	padding: 8px 40px;
+	float: right;
+	background-color: rgb(18, 171, 243);
+	cursor: pointer;
+}
+
+#userlist {
+  width: 100%;
+  height: 70px;
 }
 
 .firepad-userlist {
-	height: 100%;
 }
 
 .firepad {
@@ -34,6 +99,7 @@ body { margin: 0; height: 100%; }
 	position: relative;
 	height:100%;
 	width: 100%;
+	z-index: 1;
 }
 
 .title {
@@ -46,6 +112,7 @@ body { margin: 0; height: 100%; }
 	font-weight:normal;
 	font-size: 28px;
 	padding: 1px 5px 4px;
+	z-index: 1000;
 }
 
 .ui-resizable-handle {

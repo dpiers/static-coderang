@@ -42,11 +42,20 @@
   </div>
   <div class="main">
     <div class="firePower">
-        <div id="videoChat"></div>
-        <div id="userlist"></div>
+        <div class="sidebar">
+          <div id="videoChat"></div>
+          <div id="userlist"></div>
+          <div id="chat">
+            <div class="messages">aaa</div>
+            <div class="reply">
+              <input type="text" id="messageInput" placeholder="Say something...">
+            </div>
+          </div>
+        </div>
+        
         <div id="firepad"></div>
     </div>
-    <div class="console"></div>
+    <div class="console"> </div>
   </div>
 
   <script>
@@ -94,7 +103,7 @@
     //// Initialize contents.
     firepad.on('ready', function() {
       if (firepad.isHistoryEmpty()) {
-        firepad.setText('# Python editor!\n\nclass Person:\ndef __init__(self, name):\nself.name = name\n\ndef say_hello(name):\nprint "Hello %s!" % name\n\nm = Person("World")\n\nsay_hello(m.name)');
+        firepad.setText('# Python editor!\n\nclass Person:\n    def __init__(self, name):\n    self.name = name\n\ndef say_hello(name):\n    print "Hello %s!" % name\n\nm = Person("World")\n\nsay_hello(m.name)');
       }
     });
 
@@ -138,11 +147,22 @@
                 // you'll get some instable behaviour
                 $(this).height(currentHeight);
                 $(this).css("top", 0);
+                $(this).css("bottom", 0);
                 
                 // set the content panel width
                 $(".firePower").height(containerHeight - currentHeight - padding);            
             }
       });
+
+
+      var ctlDiv = $('<div class="controls"></div>');
+      var select = $('<div id="select">Change Language</div>');
+      var run = $('<div id="run">Run...</div>');
+
+      ctlDiv.append(select);
+      ctlDiv.append(run);
+
+      $('.firepad').append(ctlDiv);
     });
 
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

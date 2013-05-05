@@ -36,7 +36,8 @@ var FirepadUserList = (function() {
       this.makeHeading_(),
       elt('div', [
         this.makeUserEntryForSelf_(),
-        this.makeUserEntriesForOthers_()
+        // HACK: don't show others
+        //this.makeUserEntriesForOthers_()
       ], {'class': 'firepad-userlist-users' })
     ], {'class': 'firepad-userlist' });
   };
