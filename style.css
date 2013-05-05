@@ -50,18 +50,19 @@ body { margin: 0; height: 100%; }
 
 .ui-resizable-handle {
   width: 100%;
-  height: 8px;
+  height: 12px;
   padding: 0 1px;
   cursor: row-resize;
   position: absolute;
+  background-color: 333;
   top: 0;
   left: 0;
-  background: url(img/handle-h.png) 50% 1px no-repeat;
+  background: url(img/handle-h.png) 50% 3px no-repeat;
 }
 
 .console {
 	position: relative;
-	height:100%;
+	height:200px;
 	width: 100%;
 }
 
