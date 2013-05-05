@@ -54,6 +54,7 @@ body { margin: 0; height: 100%; }
 	font-family: bri;
 	font-size: 22px;
 	z-index: 2;
+	min-width: 370px;
 }
 
 .controls #select {
