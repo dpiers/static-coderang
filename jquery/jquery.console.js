@@ -152,13 +152,16 @@
 			extern.inner = inner;
 			extern.typer = typer;
 			extern.scrollToBottom = scrollToBottom;
+			extern.commandResult = commandResult;
+			extern.message = message;
+			extern.newPromptBox = newPromptBox;
 		})();
 
 		////////////////////////////////////////////////////////////////////////
 		// Reset terminal
 		extern.reset = function(){
 			var welcome = (typeof config.welcomeMessage != 'undefined');
-			inner.parent().fadeOut(function(){
+			inner.parent().fadeOut(0, function(){
 				inner.find('div').each(function(){
 					if (!welcome) {
 						$(this).remove();
@@ -167,7 +170,7 @@
 			}
 				});
 				newPromptBox();
-				inner.parent().fadeIn(function(){
+				inner.parent().fadeIn(0, function(){
 					inner.addClass('jquery-console-focus');
 					typer.focus();
 				});
