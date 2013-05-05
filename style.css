@@ -205,6 +205,10 @@ div.console span.jquery-console-prompt-label {
     font-weight: bold;
 }
 
+#language-modal {
+	display: none;
+}
+
 /* Overlay */
 #simplemodal-overlay {background-color:#000;}
 
@@ -238,6 +242,7 @@ div.console span.jquery-console-prompt-label {
     margin-bottom: 40px;
     margin-right: 13px;
     display: inline-block;
+    cursor: pointer;
 }
 
 #simplemodal-container a {
