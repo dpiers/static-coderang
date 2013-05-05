@@ -3,8 +3,15 @@ html { height: 100%; }
 body { margin: 0; height: 100%; }
 
 @font-face {
-	font-family: bri;
-	src: url('BRI293.ttf');
+font-family: bri;
+src: url('http://www.theseeker.ca/newsite/bri293-webfont.eot');
+src: url('http://www.theseeker.ca/newsite/bri293-webfont.eot?#iefix') format('embedded-opentype'),
+url('http://www.theseeker.ca/newsite/bri293-webfont.woff') format('woff'),
+url('http://www.theseeker.ca/newsite/bri293-webfont.ttf') format('truetype'),
+url('http://www.theseeker.ca/newsite/bri293-webfont.svg#brie_lightregular') format('svg');
+font-weight: normal;
+font-style: normal;
+
 }
 
 .sidebar {
@@ -166,7 +173,8 @@ body { margin: 0; height: 100%; }
 
 .console {
 	position: relative;
-	height:37%;
+	height:30%;
+	bottom: 0;
 	width: 70%;
 }
 
@@ -287,6 +295,8 @@ div.console span.jquery-console-prompt-label {
 
 img.powered-by {
 	position: relative;
-	margin-top: 50px;
-	margin-left: 64px;
+	bottom: -50px;
+	left: 0px;
+	margin: auto;
+	text-align: center;
 }

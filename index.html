@@ -61,7 +61,7 @@
         <div class="reply">
           <input type="text" id="messageInput" placeholder="Say something...">
         </div>
-        <img class="powered-by" src="img/powered-by-firebase.png"/>
+        <a href="http://firebase.com"><img class="powered-by" src="img/powered-by-firebase.png"/></a>
       </div>
     </div>
   </div>
@@ -123,7 +123,7 @@
     //// Initialize contents.
     firepad.on('ready', function() {
       if (firepad.isHistoryEmpty()) {
-        firepad.setText('# Python editor!\n\nclass Person:\n    def __init__(self, name):\n    self.name = name\n\ndef say_hello(name):\n    print "Hello %s!" % name\n\nm = Person("World")\n\nsay_hello(m.name)');
+        firepad.setText('# Python editor!\n\nclass Person:\n    def __init__(self, name):\n        self.name = name\n\ndef say_hello(name):\n    print "Hello %s!" % name\n\nm = Person("World")\n\nsay_hello(m.name)');
       }
     });
 
