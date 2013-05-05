@@ -26,6 +26,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script>
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/themes/base/jquery-ui.css"/>
   <script src="jquery/jquery.console.js"></script>
+  <script src="jquery/jquery.simplemodal.js"></script>
 
   <!-- Include JSRepl -->
   <script src="jsrepl/jsrepl.js" id="jsrepl-script"></script>
@@ -49,7 +50,7 @@
           <div id="videoChat"></div>
           <div id="userlist"></div>
           <div id="chat">
-            <div class="messages">aaa</div>
+            <div class="messages"></div>
             <div class="reply">
               <input type="text" id="messageInput" placeholder="Say something...">
             </div>
@@ -59,6 +60,17 @@
         <div id="firepad"></div>
     </div>
     <div class="console"> </div>
+  </div>
+
+  <div id="language-modal">
+    <ul>
+      <li id="python">Python</li>
+      <li id="ruby">Ruby</li>
+      <li id="lua">Lua</li>
+      <li id="javascript">JavaScript</li>
+      <li id="coffeescript">CoffeeScript</li>
+      <li id="scheme">Scheme</li>
+    </ul>
   </div>
 
   <script>
@@ -82,7 +94,8 @@
     }
     var docName = document.location.hash.slice(1);
 
-    var firebaseRef = new Firebase('https://coderang.firebaseio.com/' + docName);
+    var firepadRef = new Firebase('https://coderang.firebaseio.com/' + docName);
+    var messagesRef = new Firebase('https://coderang.firebaseio.com/' + docName + '/messages');
 
     //// Create CodeMirror (with lineWrapping on).
     var codeMirror = CodeMirror(document.getElementById('firepad'), { 
@@ -96,11 +109,11 @@
     var userId = Math.floor(Math.random() * 9999999999).toString();
 
     //// Create Firepad (with rich text features and our desired userId).
-    var firepad = Firepad.fromCodeMirror(firebaseRef, codeMirror,
+    var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
       {userId: userId});
 
     //// Create FirepadUserList (with our desired userId).
-    var firepadUserList = FirepadUserList.fromDiv(firebaseRef.child('users'),
+    var firepadUserList = FirepadUserList.fromDiv(firepadRef.child('users'),
         document.getElementById('userlist'), userId);
 
     //// Initialize contents.
@@ -232,6 +245,23 @@
             }
       });
 
+      $('#messageInput').keypress(function(e) {
+        if (e.keyCode == 13) {
+          var name = $('.firepad-userlist-name-input').val();
+          var text = $('#messageInput').val();
+          messagesRef.push({name: name, text: text});
+          $('#messageInput').val('');
+        }
+      });
+
+      // Add a callback that is triggered for each chat message.
+      messagesRef.limit(10).on('child_added', function (snapshot) {
+        var message = snapshot.val();
+        $('<div/>').text(message.text).prepend($('<em/>')
+          .text(message.name+': ')).appendTo($('.messages'));
+        $('.messages')[0].scrollTop = $('.messages')[0].scrollHeight;
+      });
+
       var ctlDiv = $('<div class="controls"></div>');
       var select = $('<div id="select">Change Language</div>');
       var run = $('<div id="run">Run...</div>');
@@ -240,6 +270,10 @@
       ctlDiv.append(run);
 
       $('.firepad').append(ctlDiv);
+
+      $('#select').click(function(e) {
+        $('#language-modal').modal();
+      });
 
       $('#run').click(function(e) {
         jqconsole.reset();
