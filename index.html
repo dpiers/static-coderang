@@ -125,9 +125,7 @@
 
     //// Initialize contents.
     firepad.on('ready', function() {
-      if (firepad.isHistoryEmpty()) {
-        firepad.setText('# Python editor!\n\nclass Person:\n    def __init__(self, name):\n        self.name = name\n\ndef say_hello(name):\n    print "Hello %s!" % name\n\nm = Person("World")\n\nsay_hello(m.name)');
-      }
+      // moved init to jsrepl load
     });
 
     var tb = new TBStart("28217822", "videoChat");
@@ -205,7 +203,13 @@
         }
     });
 
-    jsrepl.loadLanguage('python');
+    firepad.setText('Loading Python...');
+    
+    jsrepl.loadLanguage("python", function(){
+      firepad.codeMirror_.setOption("mode","python");
+      firepad.setText('# Python editor!\n\nclass Person:\n    def __init__(self, name):\n        self.name = name\n\ndef say_hello(name):\n    print "Hello %s!" % name\n\nm = Person("World")\n\nsay_hello(m.name)');
+      }
+    });
 
     /* Initialize console */
     window.jqconsole = $('.console').console({
