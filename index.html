@@ -13,6 +13,7 @@
 
   <!-- Include CodeMirror Language Modes -->
   <script src="codemirror/mode/javascript/javascript.js"></script>
+  <script src="codemirror/mode/coffeescript/coffeescript.js"></script>
   <script src="codemirror/mode/ruby/ruby.js"></script>
   <script src="codemirror/mode/python/python.js"></script>
   <script src="codemirror/mode/lua/lua.js"></script>
@@ -262,36 +263,73 @@
       });
 
       $('#python').click(function(e) {
-        jsrepl.loadLanguage("python");
-        firepad.codeMirror_.setOption("mode","python");
-        
-        firepad.setText('# Python editor!\n\nclass Person:\n    def __init__(self, name):\n        self.name = name\n\ndef say_hello(name):\n    print "Hello %s!" % name\n\nm = Person("Adrian")\n\nsay_hello(m.name)');
-
+        firepad.setText('Loading Python...');
         $.modal.close();
+
+        jsrepl.loadLanguage("python", function(){
+          firepad.codeMirror_.setOption("mode","python");
+          
+          firepad.setText('# Python editor!\n\nclass Person:\n    def __init__(self, name):\n        self.name = name\n\ndef say_hello(name):\n    print "Hello %s!" % name\n\nm = Person("Adrian")\n\nsay_hello(m.name)');
+        });
       });
 
       $('#ruby').click(function(e) {
-        jsrepl.loadLanguage("ruby");
-        firepad.codeMirror_.setOption("mode","ruby");
-        
-        firepad.setText('# Ruby editor!\n\nclass Person\n    attr_accessor :name\n\n    def initialize(name)\n        self.name = name\n    end\nend\n\ndef say_hello(name)\n    "Hello %s!" % name\nend\n\nm = Person.new("Charles")\n\nsay_hello(m.name)');
-
+        firepad.setText('Loading Ruby...');
         $.modal.close();
+
+        jsrepl.loadLanguage("ruby", function(){
+          firepad.codeMirror_.setOption("mode","ruby");
+          
+          firepad.setText('# Ruby editor!\n\nclass Person\n    attr_accessor :name\n\n    def initialize(name)\n        self.name = name\n    end\nend\n\ndef say_hello(name)\n    "Hello %s!" % name\nend\n\nm = Person.new("Charles")\n\nsay_hello(m.name)');
+        });
+        
       });
 
       $('#lua').click(function(e) {
-        jsrepl.loadLanguage("lua");
-        firepad.codeMirror_.setOption("mode","lua");
-        firepad.setText("-- Lua editor!\n\nVector = {}\n\nfunction Vector:new(x, y, z)\n  local object = { x = x, y = y, z = z }\n  setmetatable(object, { __index = Vector })\n  return object\nend\n\nfunction Vector:magnitude()\n  return math.sqrt(self.x^2 + self.y^2 + self.z^2)\nend\n\nvec = Vector:new(0, 1, 0)\n\nprint(vec:magnitude())\nprint(vec.x)");
-
+        firepad.setText('Loading Lua...');
         $.modal.close();
+
+        jsrepl.loadLanguage("lua", function(){
+          firepad.codeMirror_.setOption("mode","lua");
+          firepad.setText("-- Lua editor!\n\nVector = {}\n\nfunction Vector:new(x, y, z)\n  local object = { x = x, y = y, z = z }\n  setmetatable(object, { __index = Vector })\n  return object\nend\n\nfunction Vector:magnitude()\n  return math.sqrt(self.x^2 + self.y^2 + self.z^2)\nend\n\nvec = Vector:new(0, 1, 0)\n\nprint(vec:magnitude())\nprint(vec.x)");
+        });
       });
 
       $('#scheme').click(function(e) {
+        /*
         jsrepl.loadLanguage("scheme");
         firepad.codeMirror_.setOption("mode","scheme");
-        // set scheme code
+        
+        firepad.setText("; Scheme editor!\n\n(let ((hello0 (lambda() (display \"Hello world\")(newline))))\n  (hello0))");
+
+        $.modal.close();*/
+        alert("Coming soon!");
+      });
+
+      $('#javascript').click(function(e) {
+        /*
+        jsrepl.loadLanguage("javascript");
+        firepad.codeMirror_.setOption("mode","javascript");
+
+        firepad.setText("// JavaScript editor!\n\nvar message='Hello world!';");
+
         $.modal.close();
+        */
+        alert("Coming soon!");
+
+      });
+
+      $('#coffeescript').click(function(e) {
+        /*
+        jsrepl.loadLanguage("coffeescript");
+        firepad.codeMirror_.setOption("mode","coffeescript");
+        
+        firepad.setText("// CoffeeScript editor!\n\n message = 'Hello world!'");
+
+        $.modal.close();
+        */
+        alert("Coming soon!");
+
       });
 
     });
